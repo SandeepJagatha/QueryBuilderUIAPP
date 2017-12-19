@@ -201,10 +201,10 @@ class HomeViewModel {
 
             for (var i = 0; i < element.tableNames.length; i++) {
                 var tablename = element.tableNames[i].name;
-                var columns = element.tableNames[i].columnNames;
+                var columns = element.tableNames[i].columns;
 
                 for (var x = 0; x < columns.length; x++) {
-                    colNamesList.push(tablename + '.' + columns[x]);
+                    colNamesList.push(element.tableNames[i].name + '.' + columns[x].name);
                 }
             }
 
@@ -218,7 +218,7 @@ class HomeViewModel {
             return self.mysqlKeywords().indexOf(item) == pos;
         });
 
-        var flag
+        console.log(colNamesList);
 
         // textarea autocomplete
         var atWhoObj = {
@@ -231,7 +231,12 @@ class HomeViewModel {
             suffix: '',
             callbacks: {
                 beforeInsert: function (value, $li) {
-                    return value;
+                    if ($($li[0]).children("span").length > 0) {
+                        var tableName = $($li[0]).children("span").html();
+                        return tableName + '.' + value;
+                    } else {
+                        return value;
+                    }
                 },
                 filter: function (query, data, searchKey) {
                     if (!self.fileteredData) {
@@ -249,6 +254,11 @@ class HomeViewModel {
                         for (var i = 0, j = colNamesList.length; i < j; i++) {
                             if (data[dataArr.indexOf(colNamesList[i])].name == colNamesList[i]) {
                                 data[dataArr.indexOf(colNamesList[i])].type = "colnames";
+
+                                var arr = colNamesList[i].split('.');
+                                data[dataArr.indexOf(colNamesList[i])].tableName = arr[0];
+                                data[dataArr.indexOf(colNamesList[i])].colName = arr[1];
+                                data[dataArr.indexOf(colNamesList[i])].name = arr[1];
                             }
                         }
                         for (var i = 0, j = tableNamesList.length; i < j; i++) {
@@ -261,21 +271,63 @@ class HomeViewModel {
                     return data;
                 },
                 beforeReposition: function (offset) {
-                    console.log("offset ; " + offset.top + " -:- " + offset.left);
                     var caretPos = $('#inputor').caret('offset');
                     offset.left = caretPos.left + 6;
-                    offset.top = caretPos.top + 14;
-                    console.log("caretPos : " + offset.top + " -:- " + offset.left);
-                    return offset;
+                    offset.top = caretPos.top + 16;
+
+                    // position the atwho-container based on width of textarea
+                    var inputorLeft = $('#inputor')[0].getBoundingClientRect().left;
+                    var inputorWidth = $('#inputor')[0].getBoundingClientRect().width;
+                    var cursorLeft = caretPos.left;
+                    var boxToCursorDiff = cursorLeft - inputorLeft;
+                    var atwhoContainerWidth = $('#atwho-ground-inputor div')[0].getBoundingClientRect().width;
+                    var width = boxToCursorDiff + atwhoContainerWidth;
+
+                    if (width < inputorWidth) {
+                        return offset;
+                    } else {
+                        var space = boxToCursorDiff - atwhoContainerWidth;
+                        offset.left = offset.left - boxToCursorDiff;
+                        if (space > 0) {
+                            offset.left = offset.left + space;
+                        }
+                        return offset;
+                    }
                 }
             }
         };
-        $('#inputor').atwho(atWhoObj);
+
+        $('#inputor')
+            .atwho(atWhoObj);
+        // .atwho({
+        //     at: " ",
+        //     startWithSpace: false,
+        //     data: colNamesList,
+        //     limit: 5,
+        //     maxLen: 20,
+        //     minLen: 1,
+        //     suffix: '',
+        //     callbacks: {
+        //         filter: function (query, data, searchKey) {
+        //             if (!self.fileteredData1) {
+        //                 data.forEach(function (element) {
+        //                     console.log(element);
+        //                     var arr = element.name.split('.');
+        //                     element.tableName = arr[0];
+        //                     element.colName = arr[1];
+        //                     element.name = arr[1];
+        //                     element.type = "colnames";
+        //                 });
+        //                 self.fileteredData1 = true;
+        //             } else {
+
+        //             }
+        //             return data;
+        //         },
+        //         beforeReposition: atWhoObj.beforeReposition
+        //     }
+        // });
     }
-
-
-
-
 
 
     queryValidator() {
