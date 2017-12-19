@@ -7,6 +7,9 @@ The Visual Query Builder helps you construct complex database queries with autoc
 And also provides query validation
 </p>
 
+<p>
+Updated [Atwho.js](https://github.com/ichord/At.js/) to display three columns on autocomplete 
+
 [Java Code](https://github.com/SandeepJagatha/QueryBuilderApp)
 
 
