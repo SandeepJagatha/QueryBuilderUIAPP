@@ -1,0 +1,111 @@
+<div class="fl-row fl-row-full-width fl-row-bg-color fl-node-593abb0726ff9">
+    <div class="fl-row-content-wrap">
+        <div class="fl-row-content fl-node-content">
+
+            <div class="fl-col-group fl-node-59490bf640cdb" data-node="59490bf640cdb">
+                <div class="fl-col fl-node-59490bf6412c7" data-node="59490bf6412c7">
+                    <div class="fl-col-content fl-node-content">
+                        <div class="fl-module fl-module-heading fl-node-593abb0727863" data-node="593abb0727863">
+                            <div class="fl-module-content fl-node-content">
+                                <h2 class="fl-heading">
+                                    <span class="fl-heading-text">Query Builder</span>
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="fl-col-group fl-node-59400b2b3ddee " data-node="59400b2b3ddee ">
+                <div class="fl-col fl-node-59400b2b3e370 fl-col-small shadow-bottom-first" data-node="59400b2b3e370 ">
+                    <div class="fl-col-content fl-node-content ">
+                        <div class="fl-module fl-module-rich-text fl-node-594005e7769f7 " data-node="594005e7769f7 ">
+                            <div class="fl-module-content fl-node-content ">
+                                <div class="fl-rich-text ">
+                                    <p class="step-numbers " style="text-align: center; ">Database Objects</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="fl-module fl-module-photo fl-node-593abb0727947 fl-animation fl-slide-down fl-animated ">
+                            <div class="fl-module-content fl-node-content ">
+
+                                <div id="schemasList" class="schemasList" data-bind="visible: showSchemasList">
+                                    <ul class="list-group" data-bind="foreach: {data:tableData , afterRender: afterRender }">
+                                        <li class="list-group-item text-center" data-bind="text:name, click: $parent.itemClicked">First item</li>
+                                    </ul>
+                                </div>
+
+                                <div data-bind="visible: !showSchemasList()">
+
+                                    <ol class="breadcrumb" data-bind="foreach: breadCrumbs">
+                                        <li class="breadcrumb-item" data-bind="click: $parent.breadCrumbClicked">
+                                            <span data-bind="text: displayName, css: { active: active }">Schemas</span>
+                                        </li>
+                                    </ol>
+
+                                    <div id="selectedSchemasList" data-bind="visible: showSelectedSchemasList">
+                                        <div class="row selectedSchemasList" data-bind="foreach: { data:schemaOptions}">
+                                            <div class="col-md-6 card-div" data-bind="click: $parent.typeClicked">
+                                                <div class="card text-center">
+                                                    <i class="fas fa-camera-retro" data-bind="css: className"></i>
+                                                    <!-- <img class="card-img-top aligncenter icon-sm wp-image-155" data-bind="attr: { src: imgUrl }"> -->
+                                                    <div class="card-block">
+                                                        <p class="card-text" data-bind="text:name">Tables</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div id="showSelectedTypeList" class="schemasList" data-bind="visible: showSelectedTypeList">
+                                        <ul class="list-group" data-bind="foreach: {data:tableData , afterRender: afterRender }">
+                                            <li class="list-group-item text-center" data-bind="text:name, click: $parent.fieldTypeClicked">First item</li>
+                                        </ul>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="fl-col fl-node-59400b2b3e3d1 fl-col-small shadow-bottom " data-node="59400b2b3e3d1 ">
+                    <div class="fl-col-content fl-node-content ">
+                        <div class="fl-module fl-module-rich-text fl-node-59400aa76a70d " data-node="59400aa76a70d ">
+                            <div class="fl-module-content fl-node-content ">
+                                <div class="fl-rich-text ">
+                                    <p class="step-numbers " style="text-align: center; ">Visual Query</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="fl-module fl-module-photo fl-node-593abb0727a4d fl-animation fl-slide-down fl-animated ">
+                            <div class="fl-module-content fl-node-content ">
+                                <textarea id="inputor" class="inputor form-control" cols="30 " rows="10 "></textarea>
+                                <hr>
+                                <button data-bind="click: queryValidator" class="form-control">validate</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="fl-col fl-node-59400b2b3e427 fl-col-small shadow-bottom " data-node="59400b2b3e427 ">
+                    <div class="fl-col-content fl-node-content ">
+                        <div class="fl-module fl-module-rich-text fl-node-594006bc8d257 " data-node="594006bc8d257 ">
+                            <div class="fl-module-content fl-node-content ">
+                                <div class="fl-rich-text ">
+                                    <p class="step-numbers " style="text-align: center; ">Data Parameters</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="fl-module fl-module-photo fl-node-593abb0727b4f fl-animation fl-slide-down fl-animated">
+                            <div class="fl-module-content fl-node-content ">
+                                <textarea class="form-control" name=" " id=" " cols="30 " rows="10 "></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
