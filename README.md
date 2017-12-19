@@ -9,6 +9,7 @@ And also provides query validation
 
 <p>
 Updated [Atwho.js](https://github.com/ichord/At.js/) to display three columns on autocomplete 
+</p>
 
 [Java Code](https://github.com/SandeepJagatha/QueryBuilderApp)
 
